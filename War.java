@@ -5,22 +5,30 @@
  * @author Mr. Jaffe
  * @version 2022-10-19
  */
-public class War
-{
+public class War {
     /**
      * Constructor for the game
      * Include your initialization here -- card decks, shuffling, etc
      * Run the event loop after you've done the initializations
      */
-    public War()
-    {
+
+    Deck deck;
+    Player p1;
+    Player p2;
+
+    public War() {
         // Initializations here...
-        
-        
+        deck = new Deck();
+        deck.initializeNewDeck();
+        deck.shuffle();
+
+        p1 = new Player();
+        p2 = new Player();
+
         // ...then run the event loop
         this.runEventLoop();
     }
-    
+
     /**
      * This is the game's event loop. The code in here should come
      * from the War flowchart you created for this game
@@ -28,7 +36,7 @@ public class War
     public void runEventLoop() {
 
     }
-    
+
     /**
      * The main method is called when Java starts your program
      */
