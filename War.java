@@ -34,8 +34,6 @@ public class War {
      */
     public void runEventLoop() {
 
-
-
         boolean running = true;
         System.out.print("Player 1 Name: ");
         String playerOneName = input.nextLine();
