@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * War game class
  *
@@ -12,17 +10,21 @@ public class War {
      * Include your initialization here -- card decks, shuffling, etc
      * Run the event loop after you've done the initializations
      */
-
-    Deck deck = new Deck();
-    Scanner input = new Scanner(System.in);
+    private Deck deck;
+    private Deck playerOneDeck;
+    private Deck playerTwoDeck;
 
     public War() {
         // Initializations here...
+        deck = new Deck();
         deck.initializeNewDeck();
         deck.shuffle();
-        deck.dealDeck();
 
-        System.out.println(deck.getDeckSize());
+
+        Deck[] playerDecks = deck.dealDeck();
+        playerOneDeck = playerDecks[0];
+        playerTwoDeck = playerDecks[1];
+
 
         // ...then run the event loop
         this.runEventLoop();
@@ -33,24 +35,16 @@ public class War {
      * from the War flowchart you created for this game
      */
     public void runEventLoop() {
+        while (true) {
+            if (playerOneDeck.getDeckSize() == 0) {
+                System.out.println("Player 2 is the winner!");
+            }
+            if (playerTwoDeck.getDeckSize() == 0) {
+                System.out.println("Player 1 is the winner!");
+            }
 
-        boolean running = true;
-        System.out.print("Player 1 Name: ");
-        String playerOneName = input.nextLine();
-        System.out.print("Player 2 Name: ");
-        String playerTwoName = input.nextLine();
-
-        Player playerOne = new Player(playerOneName);
-        Player playerTwo = new Player(playerTwoName);
-
-        playerTwoName = input.nextLine();
-        System.out.println("\nWelcome to War " + playerOne.name() + " and " + playerTwo.name() + "!");
-
-        while (running) {
-            System.out.println("\nBoth players deal cards");
-            running = false;
+            
         }
-
     }
 
     /**
