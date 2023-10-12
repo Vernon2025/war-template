@@ -71,13 +71,14 @@ public class Deck {
      * @returns The top card of the deck (at cards index 0)
      */
     public Card dealCardFromDeck() {
-        // To be written
-        try {
-            return cards.remove(0);
-        } catch (IndexOutOfBoundsException e) {
+        if (cards.isEmpty()) {
+            // Handle an empty deck (e.g., throw an exception or return null)
             return null;
         }
+        Card topCard = cards.remove(0);
+        return topCard;
     }
+
 
     /**
      * Adds the provided card to the deck
@@ -85,7 +86,6 @@ public class Deck {
      * @param cardToAdd: Card to add to this deck
      */
     public void addCardToDeck(Card cardToAdd) {
-        // To be written
         cards.add(cardToAdd);
     }
 
