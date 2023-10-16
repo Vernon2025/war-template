@@ -71,12 +71,7 @@ public class Deck {
      * @returns The top card of the deck (at cards index 0)
      */
     public Card dealCardFromDeck() {
-        if (cards.isEmpty()) {
-            // Handle an empty deck (e.g., throw an exception or return null)
-            return null;
-        }
-        Card topCard = cards.remove(0);
-        return topCard;
+        return this.cards.remove(this.cards.size() - 1);
     }
 
 
