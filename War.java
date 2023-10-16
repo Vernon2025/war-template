@@ -36,11 +36,21 @@ public class War {
      */
     public void runEventLoop() {
         while (true) {
+            Card playerOneCard;
+            Card playerTwoCard;
             if (playerOneDeck.getDeckSize() == 0) {
                 System.out.println("Player 2 is the winner!");
-            }
-            if (playerTwoDeck.getDeckSize() == 0) {
+            } else if(playerTwoDeck.getDeckSize() == 0) {
                 System.out.println("Player 1 is the winner!");
+            } else {
+                System.out.println("War game has begun!");
+                playerOneDeck.dealCardFromDeck();
+                playerTwoDeck.dealCardFromDeck();
+                System.out.println("Cards have been dealt");
+
+                if(playerOneCard.rank() > playerTwoCard.rank()) {
+                    System.out.println("");
+                }
             }
 
             
