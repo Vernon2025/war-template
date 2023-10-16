@@ -81,7 +81,7 @@ public class Deck {
      * @param cardToAdd: Card to add to this deck
      */
     public void addCardToDeck(Card cardToAdd) {
-        cards.add(cardToAdd);
+        this.cards.add(0, cardToAdd);    
     }
 
 }
