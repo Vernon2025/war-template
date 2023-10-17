@@ -27,32 +27,41 @@ public class War {
 
 
         // ...then run the event loop
-        this.runEventLoop();
+        this.runEventLoop(playerOneDeck, playerTwoDeck);
     }
 
     /**
      * This is the game's event loop. The code in here should come
      * from the War flowchart you created for this game
      */
-    public void runEventLoop() {
-        while (true) {
-            Card playerOneCard;
-            Card playerTwoCard;
+    public void runEventLoop(Deck playerOneDeck, Deck playerTwoDeck) {
+        boolean isRunning = true;
+
+        Card playerOneCard = playerOneDeck.dealCardFromDeck();
+        Card playerTwoCard = playerTwoDeck.dealCardFromDeck();
+
+        while (isRunning) {
             if (playerOneDeck.getDeckSize() == 0) {
                 System.out.println("Player 2 is the winner!");
             } else if(playerTwoDeck.getDeckSize() == 0) {
                 System.out.println("Player 1 is the winner!");
             } else {
+
+
+
                 System.out.println("War game has begun!");
-                playerOneDeck.dealCardFromDeck();
-                playerTwoDeck.dealCardFromDeck();
+                System.out.println("Player 1 Dealt Card: " + playerOneDeck.dealCardFromDeck()); 
+                System.out.println("Player 2 Dealt Card: " + playerTwoDeck.dealCardFromDeck()); 
                 System.out.println("Cards have been dealt");
 
                 if(playerOneCard.rank() > playerTwoCard.rank()) {
-                    System.out.println("");
+                    System.out.println("Player 1 takes all the cards!");
+                } else if(playerOneCard.rank() < playerTwoCard.rank()) {
+                    System.out.println("Player 2 takes all the cards!");
                 }
-            }
 
+            }
+            isRunning = false;
             
         }
     }
