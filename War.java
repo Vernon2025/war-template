@@ -37,34 +37,36 @@ public class War {
     public void runEventLoop(Deck playerOneDeck, Deck playerTwoDeck) {
         boolean isRunning = true;
 
-        Card playerOneCard = playerOneDeck.dealCardFromDeck();
-        Card playerTwoCard = playerTwoDeck.dealCardFromDeck();
+        System.out.println("War game has begun!");
 
         while (isRunning) {
             if (playerOneDeck.getDeckSize() == 0) {
                 System.out.println("Player 2 is the winner!");
-            } else if(playerTwoDeck.getDeckSize() == 0) {
+                isRunning = false;
+            } else if (playerTwoDeck.getDeckSize() == 0) {
                 System.out.println("Player 1 is the winner!");
+                isRunning = false;
             } else {
 
 
+                Card playerOneCard = playerOneDeck.dealCardFromDeck();
+                Card playerTwoCard = playerTwoDeck.dealCardFromDeck();
 
-                System.out.println("War game has begun!");
-                System.out.println("Player 1 Dealt Card: " + playerOneDeck.dealCardFromDeck()); 
-                System.out.println("Player 2 Dealt Card: " + playerTwoDeck.dealCardFromDeck()); 
+                System.out.println("Player 1 Dealt Card: " + playerOneCard);
+                System.out.println("Player 2 Dealt Card: " + playerTwoCard);
                 System.out.println("Cards have been dealt");
 
-                if(playerOneCard.rank() > playerTwoCard.rank()) {
+                if (playerOneCard.rank() > playerTwoCard.rank()) {
                     System.out.println("Player 1 takes all the cards!");
-                } else if(playerOneCard.rank() < playerTwoCard.rank()) {
+
+                } else if (playerOneCard.rank() < playerTwoCard.rank()) {
                     System.out.println("Player 2 takes all the cards!");
                 }
-
+                System.out.println("_____________________________________________");
             }
-            isRunning = false;
-            
         }
     }
+
 
     /**
      * The main method is called when Java starts your program
