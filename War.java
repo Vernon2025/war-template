@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * War game class
  *
@@ -39,7 +42,7 @@ public class War {
 
         System.out.println("War game has begun!");
 
-        while (isRunning) {
+        while (round <= 300) {
 
             System.out.println("Round " + round);
 
@@ -60,6 +63,7 @@ public class War {
                 System.out.println("Player 2 Dealt Card: " + playerTwoCard);
                 System.out.println("Cards have been dealt");
 
+                
                 // Inside the game loop
                 if (playerOneCard.rank() > playerTwoCard.rank()) {
                     System.out.println("Player 1 takes all the cards!");
@@ -69,8 +73,10 @@ public class War {
                     System.out.println("Player 2 takes all the cards!");
                     playerTwoDeck.addCardToDeck(playerOneCard);
                     playerTwoDeck.addCardToDeck(playerTwoCard);
+                
                 } else {
                     System.out.println("Warrr!");
+
 
                     for (int i = 0; i < 3; i++) {
                         playerOneDeck.dealCardFromDeck();
@@ -98,6 +104,15 @@ public class War {
                     }
                 }
 
+
+                if(round == 300) {
+                    if (playerOneDeck.getDeckSize() > playerTwoDeck.getDeckSize()) {
+                        System.out.println("PLAYER 1 WINS!");
+                    } else {
+                        System.out.println("PLAYER 2 WINS!");
+                    }
+                }
+                
                 round++;
 
                 System.out.println("_____________________________________________");
