@@ -10,6 +10,7 @@ public class War {
      * Include your initialization here -- card decks, shuffling, etc
      * Run the event loop after you've done the initializations
      */
+
     private Deck deck;
     private Deck playerOneDeck;
     private Deck playerTwoDeck;
@@ -24,8 +25,6 @@ public class War {
         playerOneDeck = playerDecks[0];
         playerTwoDeck = playerDecks[1];
 
-        System.out.println(playerOneDeck.getDeckSize());
-
         // ...then run the event loop
         this.runEventLoop(playerOneDeck, playerTwoDeck);
     }
@@ -36,10 +35,14 @@ public class War {
      */
     public void runEventLoop(Deck playerOneDeck, Deck playerTwoDeck) {
         boolean isRunning = true;
+        int round = 1;
 
         System.out.println("War game has begun!");
 
         while (isRunning) {
+
+            System.out.println("Round " + round);
+
             if (playerOneDeck.getDeckSize() == 0) {
                 System.out.println("Player 2 is the winner!");
                 isRunning = false;
@@ -47,8 +50,9 @@ public class War {
                 System.out.println("Player 1 is the winner!");
                 isRunning = false;
             } else {
-                System.out.println("Player 1 Deck Size: " + playerTwoDeck.getDeckSize());
+                System.out.println("Player 1 Deck Size: " + playerOneDeck.getDeckSize());
                 System.out.println("Player 2 Deck Size: " + playerTwoDeck.getDeckSize());
+
                 Card playerOneCard = playerOneDeck.dealCardFromDeck();
                 Card playerTwoCard = playerTwoDeck.dealCardFromDeck();
 
@@ -56,47 +60,46 @@ public class War {
                 System.out.println("Player 2 Dealt Card: " + playerTwoCard);
                 System.out.println("Cards have been dealt");
 
+                // Inside the game loop
                 if (playerOneCard.rank() > playerTwoCard.rank()) {
-
                     System.out.println("Player 1 takes all the cards!");
                     playerOneDeck.addCardToDeck(playerOneCard);
                     playerOneDeck.addCardToDeck(playerTwoCard);
-                    System.out.println(playerOneDeck.getDeckSize());
-                    System.out.println(playerTwoDeck.getDeckSize());
-
                 } else if (playerOneCard.rank() < playerTwoCard.rank()) {
-
                     System.out.println("Player 2 takes all the cards!");
                     playerTwoDeck.addCardToDeck(playerOneCard);
                     playerTwoDeck.addCardToDeck(playerTwoCard);
-                    System.out.println(playerOneDeck.getDeckSize());
-                    System.out.println(playerTwoDeck.getDeckSize());
+                } else {
+                    System.out.println("Warrr!");
 
-                } else if(playerOneCard.rank() == playerTwoCard.rank()) {
-                    System.out.println("WARRRR!!!");
+                    for (int i = 0; i < 3; i++) {
+                        playerOneDeck.dealCardFromDeck();
+                        playerTwoDeck.dealCardFromDeck();
+                    }
+
                     Card newPlayerOneCard = playerOneDeck.dealCardFromDeck();
                     Card newPlayerTwoCard = playerTwoDeck.dealCardFromDeck();
 
-                    if(newPlayerOneCard.rank() > newPlayerTwoCard.rank()) {
-                        
-                        int temp = playerOneDeck.getDeckSize() + 4;
-                        System.out.println("Player 1 takes all the cards!");
+                    System.out.println("Player 1 New Card: " + newPlayerOneCard);
+                    System.out.println("Player 2 New Card: " + newPlayerTwoCard);
+
+                    if (newPlayerOneCard.rank() > newPlayerTwoCard.rank()) {
+                        System.out.println("Player 1 wins the war!");
+                        playerOneDeck.addCardToDeck(playerOneCard);
+                        playerOneDeck.addCardToDeck(playerTwoCard);
                         playerOneDeck.addCardToDeck(newPlayerOneCard);
                         playerOneDeck.addCardToDeck(newPlayerTwoCard);
-                        System.out.println(temp);
-                        System.out.println(playerTwoDeck.getDeckSize());
-
-                    } else if (newPlayerOneCard.rank() > newPlayerTwoCard.rank()) {
-                        int temp = playerTwoDeck.getDeckSize() + 4;
-                        System.out.println("Player 1 takes all the cards!");
+                    } else if (newPlayerOneCard.rank() < newPlayerTwoCard.rank()) {
+                        System.out.println("Player 2 wins the war!");
+                        playerTwoDeck.addCardToDeck(playerOneCard);
+                        playerTwoDeck.addCardToDeck(playerTwoCard);
                         playerTwoDeck.addCardToDeck(newPlayerOneCard);
                         playerTwoDeck.addCardToDeck(newPlayerTwoCard);
-                        System.out.println(playerTwoDeck.getDeckSize());
-                        System.out.println(temp);
-
                     }
-                    
                 }
+
+                round++;
+
                 System.out.println("_____________________________________________");
             }
         }
