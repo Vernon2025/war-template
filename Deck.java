@@ -71,7 +71,7 @@ public class Deck {
      * @returns The top card of the deck (at cards index 0)
      */
     public Card dealCardFromDeck() {
-        return this.cards.remove(this.cards.size() - 1);
+        return this.cards.remove(0);
     }
 
 
@@ -81,7 +81,7 @@ public class Deck {
      * @param cardToAdd: Card to add to this deck
      */
     public void addCardToDeck(Card cardToAdd) {
-        this.cards.add(0, cardToAdd);    
+        this.cards.add(cardToAdd);    
     }
 
 }
